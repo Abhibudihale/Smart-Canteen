@@ -1,0 +1,48 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+
+    container_name: mysql-container
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: smart_canteen_db
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    image: budihale/smart-canteen-backend:v1
+
+
+    container_name: springboot-app
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    image: budihale/smart-canteen-frontend:v1
+
+    container_name: react-app
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+volumes:
+  mysql-data:
