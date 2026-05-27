@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthService from './auth'; // To get the authorization header
 
 // Base URL for your Spring Boot backend user management endpoints
-const API_URL = 'http://localhost:8080/api/users/';
+const API_URL = 'http://13.60.220.247:8080/api/users/';
 
 class UserService {
   /**

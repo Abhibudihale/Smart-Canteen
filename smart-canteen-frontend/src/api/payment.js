@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthService from './auth'; // To get the authorization header
 
 // Base URL for your Spring Boot backend payment endpoints
-const API_URL = 'http://localhost:8080/api/payments/'; // Matches your PaymentController @RequestMapping
+const API_URL = 'http://13.60.220.247:8080/api/payments/'; // Matches your PaymentController @RequestMapping
 
 class PaymentService {
   /**
