@@ -23,7 +23,7 @@ services:
       retries: 10
 
   backend:
-    image: budihale/smart-canteen-backend:v1
+    image: budihale/smart-canteen-backend:v3
 
     container_name: springboot-app
 
