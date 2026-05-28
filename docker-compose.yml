@@ -5,6 +5,9 @@ services:
 
     container_name: mysql-container
 
+    command:
+      - --innodb-buffer-pool-size=128M
+
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: smart_canteen_db
@@ -17,14 +20,17 @@ services:
 
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
       timeout: 20s
       retries: 10
 
   backend:
     image: budihale/smart-canteen-backend:v1
 
-
     container_name: springboot-app
+
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx384m"
 
     ports:
       - "8080:8080"
