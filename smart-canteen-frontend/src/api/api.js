@@ -5,7 +5,7 @@ import AuthService from './auth'; // Import your AuthService to get the token
 
 // Base URL for your Spring Boot backend's *authenticated* API endpoints
 // This should be the root of your API, e.g., 'http://localhost:8080/api/'
-const API_BASE_URL = 'http://13.60.220.247:8080/api/';
+const API_BASE_URL = 'http://13.60.3.170:8080/api/';
 
 // Create an Axios instance
 const api = axios.create({

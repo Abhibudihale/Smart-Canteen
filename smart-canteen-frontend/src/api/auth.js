@@ -3,8 +3,8 @@
 import axios from 'axios';
 
 // Base URL for your Spring Boot backend authentication endpoints
-const API_URL = 'http://13.60.220.247:8080/api/auth/';
-const FOOD_API_URL = 'http://13.60.220.247:8080/api/food/'; // Added for food API
+const API_URL = 'http://13.60.3.170:8080/api/auth/';
+const FOOD_API_URL = 'http://13.60.3.170:8080/api/food/'; // Added for food API
 
 class AuthService {
   /**

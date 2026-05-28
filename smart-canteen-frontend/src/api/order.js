@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthService from './auth'; // To get the authorization header
 
 // Base URL for your Spring Boot backend order endpoints
-const API_URL = 'http://localhost:8080/api/orders/';
+const API_URL = 'http://13.60.3.170:8080/api/orders/';
 
 class OrderService {
   // We'll modify methods to accept an optional addNotification callback

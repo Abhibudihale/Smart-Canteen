@@ -3,7 +3,7 @@
 import axios from 'axios';
 import AuthService from './auth'; // To get the auth header
 
-const API_URL = 'http://13.60.220.247:8080/api/food/';
+const API_URL = 'http://13.60.3.170:8080/api/food/';
 
 class FoodService {
   /**
