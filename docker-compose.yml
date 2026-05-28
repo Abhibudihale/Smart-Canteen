@@ -34,7 +34,7 @@ services:
         condition: service_healthy
 
   frontend:
-    image: budihale/smart-canteen-frontend:v1
+    image: budihale/smart-canteen-frontend:v2
 
     container_name: react-app
 
