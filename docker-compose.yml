@@ -23,7 +23,7 @@ services:
       retries: 10
 
   backend:
-    image: budihale/smart-canteen-backend:v3
+    image: budihale/smart-canteen-backend:latest
 
     container_name: springboot-app
 
@@ -38,7 +38,7 @@ services:
         condition: service_healthy
 
   frontend:
-    image: budihale/smart-canteen-frontend:v3
+    image: budihale/smart-canteen-frontend:latest
 
     container_name: react-app
 
