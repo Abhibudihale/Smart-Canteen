@@ -6,6 +6,15 @@ import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default defineConfig({
   plugins: [react()],
+
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    },
+  },
   
   esbuild: {
     loader: 'jsx',

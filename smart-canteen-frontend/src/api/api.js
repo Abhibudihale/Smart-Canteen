@@ -1,11 +1,10 @@
 // src/api/api.js
 
 import axios from 'axios';
-import AuthService from './auth'; // Import your AuthService to get the token
+import AuthService from './auth';
 
-// Base URL for your Spring Boot backend's *authenticated* API endpoints
-// This should be the root of your API, e.g., 'http://localhost:8080/api/'
-const API_BASE_URL = 'http://13.60.3.170:8080/api/';
+// Base URL comes from .env.development or .env.production
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 // Create an Axios instance
 const api = axios.create({
@@ -18,10 +17,12 @@ const api = axios.create({
 // Request Interceptor: Add JWT token to headers before each request
 api.interceptors.request.use(
   (config) => {
-    const user = AuthService.getCurrentUser(); // Get current user from local storage
+    const user = AuthService.getCurrentUser();
+
     if (user && user.token) {
       config.headers.Authorization = `Bearer ${user.token}`;
     }
+
     return config;
   },
   (error) => {
@@ -35,18 +36,23 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // If the error is 401 Unauthorized and it's not the login request itself
-    // and we haven't already retried this request
-    if (error.response.status === 401 && originalRequest.url !== API_BASE_URL + 'auth/login') {
-      // You might want to implement token refresh logic here if your backend supports it
-      // For now, we'll just log out the user if the token is invalid/expired
+    // If the error is 401 Unauthorized
+    // and it's not the login request itself
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      originalRequest &&
+      !originalRequest.url.includes('/auth/login')
+    ) {
       console.warn('Unauthorized request. Logging out user.');
+
       AuthService.logout();
-      // Optionally, redirect to login page
-      window.location.href = '/login'; // Force reload and redirect
+
+      window.location.href = '/login';
     }
+
     return Promise.reject(error);
   }
 );
 
-export default api; // <--- THIS LINE IS CRUCIAL FOR THE DEFAULT EXPORT
+export default api;
